@@ -30,3 +30,5 @@ _minted-*/
 *.bak
 *.tmp
 *.swp
+
+!LICENSE
