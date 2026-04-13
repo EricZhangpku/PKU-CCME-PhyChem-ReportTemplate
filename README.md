@@ -11,6 +11,7 @@
 ```text
 PKU-CCME-物化实验报告模板/
 ├── main.tex                 主文档入口
+├── main.pdf                 编译后的 pdf 示例（包含使用说明）
 ├── config.tex               宏包加载与通用配置
 ├── pku-phychem-report.sty   模板样式文件
 ├── reference.bib            参考文献数据库

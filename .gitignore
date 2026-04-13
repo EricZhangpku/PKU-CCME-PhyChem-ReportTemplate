@@ -1,7 +1,11 @@
 # macOS
 .DS_Store
 
+# vscode
+.vscode/
+
 # LaTeX build outputs
+*.atfi
 *.aux
 *.bbl
 *.bcf
@@ -18,7 +22,6 @@
 *.nav
 *.snm
 *.xdv
-*.pdf
 
 # minted / pygments cache
 _minted-*/
