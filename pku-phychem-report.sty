@@ -1,0 +1,232 @@
+% -*- coding=utf-8 -*-
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pku-phychem-report}[2025 PKU Physical Chemistry Lab Report Style]
+
+% ================= 页面设置 =================
+\geometry{left=2cm,right=2cm,top=3.2cm,bottom=1.95cm}
+
+% ================= 字体 =================
+\setCJKfamilyfont{boldsong}{Songti SC}[AutoFakeBold=2]  % 宋体伪粗体
+\newcommand{\boldsongti}{\CJKfamily{boldsong}}
+
+\newCJKfontfamily\ThinHeiti{STXihei}
+\newcommand{\thinheiti}{\ThinHeiti}  % 华文细黑
+
+\newfontfamily\arial{Arial} % Arial 字体
+\newfontfamily\helvetica{Helvetica} % Helvetica 字体
+\setmainfont{Times New Roman} % 正文英文默认字体 Times New Roman
+
+% ================= 希腊字母快速替换 =================
+% 1. 一次性声明字体
+\DeclareSymbolFont{greekletters}{OML}{txmi}{m}{it}
+
+% 2. 定义一个宏批量注册
+\newcommand{\DeclareBetterGreek}[2]{%
+  \DeclareMathSymbol{#1}{\mathord}{greekletters}{#2}%
+}
+
+% 3. 批量替换希腊字母
+\DeclareBetterGreek{\varDelta}   {"01}
+\DeclareBetterGreek{\varTheta}   {"02}
+\DeclareBetterGreek{\varLambda}  {"03}
+\DeclareBetterGreek{\varXi}      {"04}
+\DeclareBetterGreek{\varPi}      {"05}
+\DeclareBetterGreek{\varSigma}   {"06}
+\DeclareBetterGreek{\varUpsilon} {"07}
+\DeclareBetterGreek{\varPhi}     {"08}
+\DeclareBetterGreek{\varPsi}     {"09}
+\DeclareBetterGreek{\varOmega}   {"0A}
+\DeclareBetterGreek{\alpha}      {"0B}
+\DeclareBetterGreek{\beta}       {"0C}
+\DeclareBetterGreek{\gamma}      {"0D}
+\DeclareBetterGreek{\delta}      {"0E}
+\DeclareBetterGreek{\epsilon}    {"22}
+\DeclareBetterGreek{\zeta}       {"10}
+\DeclareBetterGreek{\eta}        {"11}
+\DeclareBetterGreek{\theta}      {"12}
+\DeclareBetterGreek{\iota}       {"13}
+\DeclareBetterGreek{\kappa}      {"14}
+\DeclareBetterGreek{\lambda}     {"15}
+\DeclareBetterGreek{\mu}         {"16}
+\DeclareBetterGreek{\nu}         {"17}
+\DeclareBetterGreek{\xi}         {"18}
+\DeclareBetterGreek{\pi}         {"19}
+\DeclareBetterGreek{\rho}        {"1A}
+\DeclareBetterGreek{\sigma}      {"1B}
+\DeclareBetterGreek{\tau}        {"1C}
+\DeclareBetterGreek{\upsilon}    {"1D}
+\DeclareBetterGreek{\phi}        {"1E}
+\DeclareBetterGreek{\chi}        {"1F}
+\DeclareBetterGreek{\psi}        {"20}
+\DeclareBetterGreek{\omega}      {"21}
+\DeclareBetterGreek{\varepsilon} {"0F}
+\DeclareBetterGreek{\vartheta}   {"23}
+\DeclareBetterGreek{\varpi}      {"24}
+\DeclareBetterGreek{\varrho}     {"25}
+\DeclareBetterGreek{\varsigma}   {"26}
+\DeclareBetterGreek{\varphi}     {"27}
+
+\SetSymbolFont{largesymbols}{normal}{OMX}{stix}{m}{n} % 大符号字体
+
+
+% ================= 页眉页脚（统一样式） =================
+\pagestyle{fancy}
+\setlength{\headwidth}{\textwidth} % 全局统一页眉宽度
+\newcommand{\ExperimentTitleText}{}
+\newcommand{\ExperimentTitle}[1]{\renewcommand{\ExperimentTitleText}{#1}}
+
+% ========= 封面样式 =========
+\fancypagestyle{coverstyle}{
+    \fancyhf{} 
+    \fancyhead[C]{%
+        \ThinHeiti % 切换中文为最窄的黑体（华文细黑）
+        \helvetica % 切换西文/数字为 Helvetica
+        \fontsize{9pt}{11pt}\selectfont % 统一设置字号和行间距
+        北京大学化学与分子工程学院%
+    }
+}
+
+% ========= 正文样式 =========
+\fancypagestyle{mainstyle}{
+    \fancyhf{} % 清空
+    \fancyhead[L]{{\thinheiti \fontsize{9}{11}\selectfont 物理化学实验}}
+    \fancyhead[C]{{\thinheiti \fontsize{9}{11}\selectfont \ExperimentTitleText}}
+    \fancyhead[R]{{\helvetica \fontsize{9}{11}\selectfont \@studentid}}
+    \fancyfoot[C]{\fontsize{10.5pt}{12pt}\selectfont\thepage/\pageref*{LastPage}}
+}
+
+% ================= 标题格式 =================
+\titleformat{\section}[hang]
+	{\bfseries\heiti\fontsize{12}{10pt}\selectfont}
+	{\arial\thesection}{1em}{}
+\titleformat{\subsection}[hang]
+	{\boldsongti\fontsize{12}{10pt}\selectfont}
+	{\bfseries\arial\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}[hang]
+	{\fangsong\fontsize{12}{10pt}\selectfont}
+	{\arial\thesubsubsection}{0.8em}{}
+
+% ================= 正文格式 =================
+\renewcommand\normalsize{
+	\fontsize{12pt}{15pt}\selectfont} % 15pt 行距固定
+\normalsize
+
+% ================= 图表标题格式 =================
+\captionsetup[figure]{labelfont=bf, labelsep=quad}
+\captionsetup[table]{labelfont=bf, labelsep=quad}
+\captionsetup[subfigure]{labelfont=normalfont}
+
+% ================= 表格快捷命令 =================
+\NewDocumentEnvironment{newtable}{ O{htbp} }{%
+\begin{table}[#1]
+	\centering
+	\begin{threeparttable}
+}{%
+	\end{threeparttable}
+\end{table}
+}
+\NewDocumentCommand{\tabletabular}{ m +m }{%
+{\fontsize{10.5pt}{15pt}\selectfont
+\begin{tabularx}{\textwidth}{#1}
+#2
+\end{tabularx}
+}
+}
+\NewDocumentCommand{\tablenote}{ m }{%
+\vskip 0.15cm
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item[] 注：#1
+\end{tablenotes}
+}
+
+% ================= 智能交叉引用 =================
+\crefname{figure}{图}{图}
+\Crefname{figure}{图}{图}
+\crefname{table}{表}{表}
+\Crefname{table}{表}{表}
+\crefname{equation}{式}{式}
+\Crefname{equation}{式}{式}
+\crefmultiformat{figure}{图~#2#1#3}{ 和图~#2#1#3}{、图~#2#1#3}{ 和图~#2#1#3}
+\crefmultiformat{table}{表~#2#1#3}{ 和表~#2#1#3}{、表~#2#1#3}{ 和表~#2#1#3}
+\crefmultiformat{equation}{式~(#2#1#3)}{ 和式~(#2#1#3)}{、式~(#2#1#3)}{ 和式~(#2#1#3)}
+
+% ================= 封面及信息变量定义 =================
+\makeatletter
+\newcommand{\Title}{}
+\newcommand{\setTitle}[1]{%
+	\renewcommand{\Title}{#1}%
+	\title{#1}%
+}
+\newcommand{\studentidtext}[1]{\def\@studentid{#1}}
+\newcommand{\abstracttext}[1]{\def\@abstract{#1}}
+\newcommand{\keywordstext}[1]{\def\@keywords{#1}}
+
+% \makecover 参数顺序：题目，姓名，学号，组别，组内编号，日期，室温，压强
+\newcommand{\makecover}[8]{
+% 提取学号和实验名称，用于后面正文的页眉渲染
+\studentidtext{#3}
+\ExperimentTitle{#1}
+
+\begin{titlepage}
+\thispagestyle{coverstyle}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[scale=0.9]{logo_of_PKU.png}
+\end{figure}
+
+\begin{center}
+
+	{\heiti \fontsize{36}{44}\selectfont 物理化学实验报告}
+
+	\vskip 1.5cm
+
+	{\boldsongti \fontsize{22}{30} \bfseries
+	\makebox[2em][s]{题目}：\underline{\makebox[13em][c]{#1}}}
+
+\end{center}
+
+\vskip 0.5cm
+\begin{quotation}
+	
+	\heiti \fontsize{14}{30} \selectfont
+	\doublespacing
+	\centering
+	\quad 
+
+	姓\hspace{0.72cm} 名：\underline{\makebox[8em][c]{\fangsong #2}}
+
+	学\hspace{0.72cm} 号：\underline{\makebox[8em][c]{#3}}
+
+	组\hspace{0.72cm} 别：\underline{\makebox[8em][c]{#4}}
+
+	组内编号：\underline{\makebox[8em][c]{#5}}
+
+	实验日期：\underline{\makebox[8em][c]{#6}}
+
+	室\hspace{0.72cm} 温：\underline{\makebox[8em][c]{#7 $^\circ \mathrm{C}$}}
+
+	大气压强：\underline{\makebox[8em][c]{#8 $\mathrm{kPa}$}}
+
+\end{quotation}
+
+\vskip 3.5cm
+
+\noindent\rule{\textwidth}{0.4pt}
+
+% ---- 摘要部分 ----
+\begin{flushleft}
+
+{\boldsongti \fontsize{12}{12}\selectfont 摘要} ~\songti \fontsize{12}{12}\selectfont
+\@abstract
+
+\bigskip
+{\songti \fontsize{12}{12}\selectfont （}{\boldsongti \fontsize{12}{12}\selectfont 关键词} ~\songti \fontsize{12}{12}\selectfont
+\@keywords）
+
+\end{flushleft}
+
+\end{titlepage}
+}
+\makeatother

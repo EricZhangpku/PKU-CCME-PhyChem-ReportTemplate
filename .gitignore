@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+
+# LaTeX build outputs
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.xdv
+*.pdf
+
+# minted / pygments cache
+_minted-*/
+
+# Common temporary files
+*.bak
+*.tmp
+*.swp

@@ -1,0 +1,65 @@
+% ---- 配置文件 ----
+
+% ---- 宏包引用 ----
+\usepackage[UTF8]{ctex}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{lastpage} 
+\usepackage{fontspec}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{tabularx}
+\usepackage{threeparttable}
+\usepackage{mhchem}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{upgreek}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage[backend=biber, bibstyle=chem-acs, citestyle=numeric-comp, sorting=none]{biblatex}
+\usepackage[colorlinks, linkcolor=black, anchorcolor=black, citecolor=black, urlcolor=black]{hyperref}
+\usepackage[capitalise]{cleveref}
+\usepackage{attachfile2}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{minted}
+
+\RequirePackage{mathptmx} % 公式字体采用 Times New Roman
+
+% ---- 引用格式与文献定义 ----
+% 让正文引用与文末一致为 [1]
+\DeclareFieldFormat{labelnumber}{\mkbibbrackets{#1}}
+\DeclareFieldFormat{labelnumberwidth}{#1}
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {\printtext[bibhyperref]{\printfield{labelnumber}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}               
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{\printfield{labelnumber}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}}
+  {\endlist}
+  {\item}
+
+\DefineBibliographyStrings{english}{
+  references = {参考文献},
+}
+
+% ---- 导入文献库文件 ----
+\addbibresource{reference.bib}

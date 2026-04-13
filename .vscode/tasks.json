@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "compile-latex",
+			"type": "shell",
+			"command": "xelatex -interaction=nonstopmode -shell-escape main.tex && biber main && xelatex -interaction=nonstopmode -shell-escape main.tex && xelatex -interaction=nonstopmode -shell-escape main.tex",
+			"isBackground": false
+		},
+		{
+			"label": "compile-latex-2",
+			"type": "shell",
+			"command": "xelatex -interaction=nonstopmode -shell-escape main.tex && biber main && xelatex -interaction=nonstopmode -shell-escape main.tex && xelatex -interaction=nonstopmode -shell-escape main.tex",
+			"isBackground": false
+		},
+		{
+			"label": "compile-after-remove-subtable",
+			"type": "shell",
+			"command": "xelatex -interaction=nonstopmode -shell-escape main.tex && biber main && xelatex -interaction=nonstopmode -shell-escape main.tex && xelatex -interaction=nonstopmode -shell-escape main.tex",
+			"isBackground": false
+		},
+		{
+			"label": "compile-after-math-env-insert",
+			"type": "shell",
+			"command": "xelatex -interaction=nonstopmode -shell-escape main.tex && biber main && xelatex -interaction=nonstopmode -shell-escape main.tex && xelatex -interaction=nonstopmode -shell-escape main.tex",
+			"isBackground": false
+		}
+	]
+}

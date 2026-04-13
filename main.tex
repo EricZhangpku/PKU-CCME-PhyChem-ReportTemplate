@@ -1,0 +1,280 @@
+% author: Jiahang Zhang (zhangjh@stu.pku.edu.cn)
+% Last Modified (v1.0): 2026.4.13
+
+% -*- coding=utf-8 -*-
+\documentclass[a4paper,12pt]{article}
+\input{config.tex} % 引入配置文件
+\usepackage{pku-phychem-report} % 引入自定义样式包
+
+\setTitle{物理化学实验X标题} % 报告标题
+
+% ---- 报告摘要及关键词 ----
+\abstracttext{
+    本实验通过……方法，测定了……绘制了……并通过……确定了……。概括本实验用什么方法验证或研究了什么问题，取得了什么结果和结论。摘要中要求给出主要结果的数据及其误差范围，以及研究特色。物化实验报告摘要一般要求在100字以内。摘要中尽量不使用复杂化学结构式、图片和公式。不推荐在摘要中引用文献。
+    }
+
+\keywordstext{关键词1；关键词2；关键词3}
+
+% ==== 文档部分 ====
+\begin{document}
+
+% ---- 生成封面 ----
+% 参数顺序：题目，姓名，学号，组别，组内编号，日期，室温，压强
+\makecover{\Title}{张三}{1000000000}{00}{00}{20xx.x.xx}{25.0}{101.3}
+
+% ---- 正文 ----
+\pagestyle{mainstyle} 
+
+\section{引言}
+\label{sec:intro}
+本项目作者系2023级北大化院本科生张嘉航（\texttt{zhangjh@stu.pku.edu.cn}）。项目已于 \href{https://github.com/EricZhangpku/PKU-CCME-PhyChem-ReportTemplate}{\textcolor{blue}{Github开源}}。严禁任何个人或组织将本项目用于任何形式的商业用途。
+
+引言部分放上预习报告的照片，内容要求齐全。
+
+在文档中植入图片的方法：
+
+\begin{minted}[fontsize=\small,breaklines]{latex}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/example.png}
+    \caption{图片标题}
+    \label{fig:example}
+\end{figure}
+\end{minted}
+最终效果：
+\begin{figure}[htbp]
+    \centering
+    % 使用真实图片时，取消下一行注释并替换路径
+    % \includegraphics[width=0.75\textwidth]{figures/example.png}
+    \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{10cm}{0cm}} % 占位框
+    \caption{图片标题}
+    \label{fig:example}
+\end{figure}
+
+如果植入组合图片，则采用以下方法：
+\begin{minted}[fontsize=\small,breaklines]{latex}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/subfigure1.png}
+        \caption{子图1标题}
+        \label{fig:sub1}
+    \end{subfigure}%
+    \hfill%
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/subfigure2.png}
+        \caption{子图2标题}
+        \label{fig:sub2}
+    \end{subfigure}
+    \caption{组合图片标题}
+    \label{fig:combined}
+\end{figure}
+\end{minted}
+最终效果：
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+        \caption{子图1标题}
+        \label{fig:sub1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+        \caption{子图2标题}
+        \label{fig:sub2}
+    \end{subfigure}
+    \caption{组合图片标题}
+    \label{fig:combined}
+\end{figure}
+
+可以采用 \mintinline{latex}|\cref{fig}| 引用图片、表格和公式，而无需在前方手动输入“图/表/式”。或者，你也可以使用 \mintinline{latex}|\ref{fig}| 进行交叉引用，但是需要自行加入引用描述如“图/表/式”。例如：\cref{fig:example} 是一个示例图片，图 \ref{fig:combined} 是一个组合图片。
+
+使用 \mintinline{latex}|\cref{fig1, fig2}| 命令的效果：“\cref{fig:sub1,fig:sub2}”。但请注意 \mintinline{latex}|\ref{}| 没有这种用法。
+
+本文档推荐采用 \texttt{xelatex} 进行编译，表格、图片和公式的交叉引用需要使用两次 \texttt{xelatex} 才能正常显示。如有文献引用，采用 \texttt{xelatex -> biber -> xelatex -> xelatex} 编译一遍即可正常显示引用内容。
+
+\vspace{1cm}
+\section{实验部分}
+\label{sec:exp}
+根据实际情况据实叙述实验中涉及的主要仪器设备和药品、实验步骤和实验条件（如果自己认为预习报告中写的很完善了，可以直接参照预习报告照片，不再重写）。
+
+\subsection{仪器和试剂}
+\subsubsection{试剂}
+参考讲义。
+
+\subsubsection{仪器}
+参考讲义与仪器清单。
+
+\subsection{实验内容}
+简述实验步骤，可以引用讲义。
+
+本文档的引用命令有两种： \mintinline{latex}|\supercite{}| 或 \mintinline{latex}|\cite{}|，前者会在引用处显示上标，后者会显示方括号内的数字。
+示例：采用 \mintinline{latex}|\supercite{haynes2016crc}| 的效果：CRC手册\supercite{haynes2016crc}。
+
+引用命令不仅可以适用于书籍 \mintinline{bib}|@book|，还可以适用于期刊文章 \mintinline{bib}|@article| （如 \cite{example_article}），会议论文 \mintinline{bib}|@inproceedings| （如 \cite{example_inproceedings}）和技术报告 \mintinline{bib}|@techreport| （如 \cite{example_techreport}）等。
+
+\vspace{1cm}
+\section{实验数据记录及处理}
+\label{sec:data}
+
+根据实验原理的要求对原始实验数据进行适当的处理并作出符合规范的图或表；对所作图、表作出必要的描述和说明；依据图、表得出该实验待测量的最终运算结果（注意有效数字，多数实验要提供误差范围，即 $\overline{X}\ \pm\ \sigma$）。
+
+\subsection{表格植入方法}
+
+要求采用三线表的形式列表。在此推荐一个\href{https://www.tablesgenerator.com/}{\textcolor{blue}{制表网站}}，选择 \texttt{Booktabs table style} 模式即可生成三线表并导出 \LaTeX{} 代码。但如果你想让表格更好看，则推荐使用 \texttt{threeparttable} 宏包。又或者你比较懒，那么也可以使用我已经封装好的 \mintinline{latex}|newtable| 环境。示例代码如下：
+
+\begin{minted}[fontsize=\small,breaklines]{latex}
+\begin{newtable}[htbp]
+    \caption{表格标题}
+    \label{tab:example}
+    \tabletabular{
+        >{\centering\arraybackslash}X 
+        >{\centering\arraybackslash}X 
+        >{\centering\arraybackslash}X 
+        >{\centering\arraybackslash}X}{
+        \toprule
+        \multirow{2}{*}{序号} & \multirow{2}{*}{变量1 / 单位1} & \multicolumn{2}{c}{变量2 / 单位2} \\
+        \cmidrule(lr){3-4}
+         & & 情形1 & 情形2 \\
+        \midrule
+        1 & x.xxx & x.xxx & $-$x.xxx \\
+        2 & & & \\
+        3 & & & \\
+        4 & & & \\
+        5 & & & \\
+        \bottomrule
+    }
+    \tablenote{（可选）表注内容。}
+\end{newtable}
+\end{minted}
+最终效果：
+\begin{newtable}[htbp]
+    \caption{表格标题}
+    \label{tab:example}
+    \tabletabular{
+        >{\centering\arraybackslash}X 
+        >{\centering\arraybackslash}X 
+        >{\centering\arraybackslash}X 
+        >{\centering\arraybackslash}X}{
+        \toprule
+        \multirow{2}{*}{序号} & \multirow{2}{*}{变量1 / 单位1} & \multicolumn{2}{c}{变量2 / 单位2} \\
+        \cmidrule(lr){3-4}
+         & & 情形1 & 情形2 \\
+        \midrule
+        1 & x.xxx & x.xxx & $-$x.xxx \\
+        2 & & & \\
+        3 & & & \\
+        4 & & & \\
+        5 & & & \\
+        \bottomrule
+    }
+    \tablenote{（可选）表注内容。}
+\end{newtable}
+\\代码解释：
+\begin{enumerate}
+    \item \mintinline{latex}|\begin{newtable}[htbp] ... \end{newtable}|：创建一个完整表格浮动体，位置参数与普通 \mintinline{latex}|table| 一样。
+    \item \mintinline{latex}|\caption{...}| 和 \mintinline{latex}|\label{...}|：标题和交叉引用标签，建议始终放在表格内容前。
+    \item \mintinline{latex}|\tabletabular{列格式}{表内容}|：写表格主体（字体默认 10.5 pt）。
+    \item 列格式里常用 \mintinline{latex}|X|（自动分配宽度），配合 \mintinline{latex}|>{\centering\arraybackslash}X| 可以让该列内容居中。
+    \item \mintinline{latex}|\tablenote{...}|：可选表注，不需要时直接删掉这一行即可（字体默认 9 pt）。
+\end{enumerate}
+
+由于子表的使用频率较低，因此本人并没有封装专门的 \mintinline{latex}|newtable| 子表格环境。不过所需宏包均已在 \texttt{config.tex} 中引入，可以自行尝试。
+
+表格的交叉引用与图片相同，不再赘述。
+   
+\subsection{公式插入方法}
+
+公式的输入方法有两种：行内公式和行间公式。行内公式直接用 \mintinline{latex}|$...$| 包裹，行间公式则用 \mintinline{latex}|\begin{equation} ... \end{equation}| 包裹，并且会自动编号。示例如下：
+\begin{minted}[fontsize=\small,breaklines]{latex}
+\begin{equation}
+    Q_{\rm{s}}=\left(\frac{\partial Q}{\partial n_2}\right)_{n_1}+n_0\left(\frac{\partial Q_{\rm{s}}}{\partial n_0}\right)_{n_2}
+    \label{eq:sample}
+\end{equation}
+\end{minted}
+最终效果：
+\begin{equation}
+    Q_{\rm{s}}=\left(\frac{\partial Q}{\partial n_2}\right)_{n_1}+n_0\left(\frac{\partial Q_{\rm{s}}}{\partial n_0}\right)_{n_2}
+    \label{eq:sample}
+\end{equation}
+
+如果需要使用多行公式，可以使用 \mintinline{latex}|gather| 和 \mintinline{latex}|align| 等环境进行排列。另外，如果希望一组相关公式共享主编号，可用 \mintinline{latex}|subequations|。示例如下：
+\begin{minted}[fontsize=\small,breaklines]{latex}
+\begin{subequations}\label{eq:kinetics_group}
+\begin{align}
+    \ln c_t &= \ln c_0 - kt \label{eq:kinetics_ln} \\
+    t_{1/2} &= \frac{\ln 2}{k} \label{eq:kinetics_half}
+\end{align}
+\end{subequations}
+\end{minted}
+或：
+\begin{minted}[fontsize=\small,breaklines]{latex}
+\begin{gather}
+    k = A\exp\left(-\frac{E_a}{RT}\right) \label{eq:arrhenius} \\
+    \ln k = \ln A - \frac{E_a}{R}\cdot\frac{1}{T} \label{eq:arrhenius_ln}
+\end{gather}
+\end{minted}
+最终效果：
+\begin{subequations}\label{eq:kinetics_group}
+\begin{align}
+    \ln c_t &= \ln c_0 - kt \label{eq:kinetics_ln} \\
+    t_{1/2} &= \frac{\ln 2}{k} \label{eq:kinetics_half}
+\end{align}
+\end{subequations}
+
+\begin{gather}
+    k = A\exp\left(-\frac{E_a}{RT}\right) \label{eq:arrhenius} \\
+    \ln k = \ln A - \frac{E_a}{R}\cdot\frac{1}{T} \label{eq:arrhenius_ln}
+\end{gather}
+
+公式交叉引用的 \mintinline{latex}|\cref{}| 方法与图片和表格相同，引用示例：\cref{eq:kinetics_group,eq:kinetics_ln,eq:kinetics_half,eq:arrhenius,eq:arrhenius_ln}。另外，除 \mintinline{latex}|\cref{}|外，还有 \mintinline{latex}|\ref{}| 和 \mintinline{latex}|\eqref{}| 两种引用方法，大家可以自行尝试。
+
+具体的公式输入方法和语法可以参考 \href{https://en.wikibooks.org/wiki/LaTeX/Mathematics}{\textcolor{blue}{LaTeX/Mathematics - Wikibooks网站}}，或者先在\href{https://www.latexlive.com}{\textcolor{blue}{在线公式编辑器}}内编译完成后复制进来。
+
+\vspace{1cm}
+\section{结果与讨论}
+\label{sec:result}
+
+对自己实验结果可靠性和可信度的论证和评价（如：误差的分析和估算、结果有效数字位数的确定等，误差分析不要求面面俱到）；对重要实验现象及所遇问题的分析和解释；结合物理化学原理、文献以及其它来源的证据和前人的结论，经严密推理得出符合逻辑的推论和结论。也可以简要总结一下该实验中的经验教训，或者提出对该实验进行改进的合理化建议。
+
+\subsection{实验结果}
+本实验通过……测得……为……，…………。
+
+\subsection{实验讨论}
+
+\subsubsection{误差来源讨论}
+……
+
+……
+
+\subsubsection{实验过程中出现的问题}
+（可选）
+
+……
+
+\subsubsection{实验改进建议}
+（可选）
+
+……
+
+\subsection{实验结论}
+……
+
+……
+
+\vspace{1cm}
+\section*{致谢}
+（可选）
+
+感谢老师悉心指导以及组内成员的共同合作！
+
+% ---- 参考文献 ----
+\vspace{1cm}
+\printbibliography
+
+\end{document}
